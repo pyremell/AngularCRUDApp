@@ -1,15 +1,46 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-create',
   templateUrl: './product-create.component.html',
-  styleUrls: ['./product-create.component.css']
+  styleUrls: ['./product-create.component.css'],
 })
 export class ProductCreateComponent implements OnInit {
+  product = {
+    name: '',
+    description: '',
+    available: false,
+  };
+  submitted = false;
 
-  constructor() { }
+  constructor(private productService: ProductService) {} // The "private" declaration prevents access to the information from outside the class "ProductServices". Used for security purposes.
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  createProduct(): void {
+    const data = {
+      name: this.product.name,
+      description: this.product.description,
+    };
+
+    this.productService.create(data).subscribe(
+      (response) => {
+        console.log(response);
+        this.submitted = true;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
+  newProduct(): void {
+    this.submitted = false;
+    this.product = {
+      name: '',
+      description: '',
+      available: false,
+    };
+  }
 }

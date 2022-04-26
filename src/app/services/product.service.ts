@@ -14,19 +14,19 @@ export class ProductService {
     return this.httpClient.get(baseURL);
   }
 
-  read(id): Observable<any> {
+  read(id: any): Observable<any> {
     return this.httpClient.get(`${baseURL}/${id}`);
   }
 
-  create(data): Observable<any> {
+  create(data: any): Observable<any> {
     return this.httpClient.post(baseURL, data);
   }
 
-  update(id, data): Observable<any> {
+  update(id: any, data: any): Observable<any> {
     return this.httpClient.put(`${baseURL}/${id}`, data);
   }
 
-  delete(id): Observable<any> {
+  delete(id: any): Observable<any> {
     return this.httpClient.delete(`${baseURL}/${id}`);
   }
 
@@ -34,7 +34,7 @@ export class ProductService {
     return this.httpClient.delete(baseURL);
   }
 
-  searchByName(name): Observable<any> {
+  searchByName(name: any): Observable<any> {
     return this.httpClient.get(`${baseURL}?name=${name}`);
   }
 }
